@@ -537,3 +537,10 @@ document.querySelectorAll('.nav-link').forEach(link => {
 });
 
 console.log('AL NOUR Juices Website Loaded Successfully! 🎉');
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        openSettings();
+    }
+});
+
