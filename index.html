@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عصائر وكوكتيلات النور - AL NOUR Juices</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/201065040078" class="whatsapp-btn" target="_blank" title="تواصل معنا على WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Settings Panel with Password -->
+    <div class="settings-panel" id="settingsPanel">
+        <div class="settings-header">
+            <h2>الإعدادات</h2>
+            <button class="close-settings" id="closeSettings">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <!-- Password Form -->
+        <div class="settings-password" id="settingsPassword">
+            <div class="password-form">
+                <h3>أدخل كلمة السر</h3>
+                <input type="password" id="passwordInput" placeholder="أدخل كلمة السر" class="password-input">
+                <button class="password-btn" id="passwordBtn">دخول</button>
+            </div>
+        </div>
+
+        <!-- Settings Content (Hidden until password is correct) -->
+        <div class="settings-content" id="settingsContent" style="display: none;">
+            <div class="settings-section">
+                <h3>تعديل الصور</h3>
+                <div class="setting-item">
+                    <label>صورة البانر الرئيسية:</label>
+                    <input type="file" id="heroBannerInput" accept="image/*" class="image-input">
+                    <button class="upload-btn" onclick="updateImage('heroBanner')">تحديث الصورة</button>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h3>تعديل المشروبات</h3>
+                <div id="drinkSettings"></div>
+                <div class="setting-item">
+                    <label>تحديث صورة المشروب:</label>
+                    <select id="drinkSelect" class="drink-select">
+                        <option value="">اختر مشروب</option>
+                    </select>
+                    <input type="file" id="drinkImageInput" accept="image/*" class="image-input">
+                    <button class="upload-btn" onclick="updateDrinkImage()">تحديث صورة المشروب</button>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h3>معلومات المتجر</h3>
+                <div class="setting-item">
+                    <label>العنوان:</label>
+                    <input type="text" id="storeAddress" placeholder="أدخل العنوان">
+                </div>
+                <div class="setting-item">
+                    <label>رقم الهاتف:</label>
+                    <input type="text" id="storePhone" placeholder="أدخل رقم الهاتف">
+                </div>
+                <div class="setting-item">
+                    <label>الخبرة:</label>
+                    <input type="text" id="storeExperience" placeholder="أدخل سنوات الخبرة">
+                </div>
+                <div class="setting-item">
+                    <label>المدير:</label>
+                    <input type="text" id="storeManager" placeholder="أدخل اسم المدير">
+                </div>
+            </div>
+            <button class="save-settings" id="saveSettings">حفظ التغييرات</button>
+            <button class="reset-settings" id="resetSettings">إعادة تعيين</button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo-section" onclick="openSettings()">
+                <img src="images/logo.png" alt="AL NOUR Logo" class="logo">
+                <span class="brand-name">النور</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+                <li><a href="#drinks" class="nav-link">المشروبات</a></li>
+                <li><a href="#about" class="nav-link">عننا</a></li>
+                <li><a href="#contact" class="nav-link">التواصل</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-banner">
+            <img src="images/hero-banner.png" alt="عصائر النور" class="banner-img" id="heroBannerImg">
+            <div class="banner-overlay"></div>
+            <div class="banner-content">
+                <h1 class="hero-title">عصائر النور</h1>
+                <p class="hero-subtitle">طعم طبيعي، شعور رائع</p>
+                <p class="hero-description">استمتع بأفضل العصائر والكوكتيلات الطبيعية</p>
+                <a href="#drinks" class="cta-button">اكتشف المشروبات</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Drinks Section -->
+    <section id="drinks" class="drinks-section">
+        <div class="section-header">
+            <h2>مشروباتنا</h2>
+            <p>مجموعة متنوعة من العصائر والكوكتيلات اللذيذة</p>
+        </div>
+        <div class="drinks-grid" id="drinksGrid">
+            <!-- Drinks will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>عن عصائر النور</h2>
+                <div class="about-info">
+                    <div class="info-card">
+                        <i class="fas fa-award"></i>
+                        <h3>الخبرة</h3>
+                        <p id="experienceText">16 سنة من الخبرة في صناعة العصائر الطبيعية</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-user-tie"></i>
+                        <h3>الإدارة</h3>
+                        <p id="managerText">إدارة م. مسعد صلاح</p>
+                    </div>
+                    <div class="info-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>الموقع</h3>
+                        <p id="locationText">المنصورة - شارع مجمع المحاكم أمام عالم التوفير</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2>تواصل معنا</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>الهاتف</h3>
+                    <p id="phoneText">01065040078</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>العنوان</h3>
+                    <p id="addressText">المنصورة - شارع مجمع المحاكم أمام عالم التوفير</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp</h3>
+                    <a href="https://wa.me/201065040078" target="_blank">اضغط للتواصل</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 عصائر وكوكتيلات النور. جميع الحقوق محفوظة.</p>
+            <p>صنع بـ ❤️ لأجلك</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
